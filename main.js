@@ -67,197 +67,97 @@ client.on("message", async message => {
                 
             message.author.send(commandEmbed)
         }
-        function index(contributed, arr) {
-            for (var i=0; i<arr.length; i++) {
-            for (var j=0; j<arr[i].length; j++) {
-            if (arr[i][j] == contributed) { return i; }
-            }
-            }
-            return -1;
-        }
-        function formatNumber(num) {
-            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-          }
-       /*  if(cmd == "gxpleaderboard"){
-            console.log("a")
-            var mostGxpList = [];
-            var mostGxpListMult = [];
-            let resText1 = "";
-            let resText2 = "";
-            let xml = new XMLHttpRequest();
-            xml.open("GET", "https://api.wynncraft.com/public_api.php?action=statsLeaderboard&type=guild&timeframe={}");
-            xml.onreadystatechange = function(){
-            if(this.status == 200){
-                try{
-                resText1 = JSON.parse(this.responseText);
-                putInList(resText1);
-            }catch(e){}
-        }
-        }
-        xml.send();
-        }
-            
-            let gxp10;
-            function getGxp(guild, c){
-                try{
-                for(i=0;i<guild["members"].length;i++){
-                    contributedMember = parseInt(guild.members[i].contributed)
-                    member = guild.members[i].name;
-                    tag = guild.prefix
-                    if(mostGxpList.indexOf(contributedMember) == -1){
-                        mostGxpList.push(contributedMember);
-                    }
-                    if(index(contributedMember, mostGxpListMult) == -1){ 
-                        mostGxpListMult.push([member, tag, contributedMember]);
-                    }
-                }
-                }catch(e){}
-                mostGxpList.sort(function(a, b){
-            
-                    return b - a;
-                
-                });
-                mostGxpListMult.sort(function(a, b){
-                    return b[2] - a[2];
-                });
-                
-                    
-                    gxp10 = "\ ";
-                    for (i = 0; i < 10; i++){
-                         gxp10 += (i+1) + ". " +  mostGxpListMult[i][0]+ "[" + mostGxpListMult[i][1] + "]" +": "+ formatNumber(mostGxpList[i]) + "\n" ;
-                    }
-                    if(c.length == 100){
-                        console.log(mostGxpListMult);
-                        const gxpEmbed = new Discord.RichEmbed()
-                        .setColor('#7970F8')
-                        .setTitle("The Guild-XP Top 100")
-                        .addField("(not really accurate, because it's only checking the top 100 guilds)", gxp10)
-                        message.channel.send(gxpEmbed)
-                    }   
-    };
-    let already = false;
-            let alreadyrequested = []
-            function putInList(data){
-                if(already == false){
-                    already = true
-                let xml1
-                for(i=0;i<100;i++){
-                     alreadyrequested.push(i)
-                        xml1 = new XMLHttpRequest();
-                        xml1.open("GET", "https://api.wynncraft.com/public_api.php?action=guildStats&command=" + data["data"][i]["name"]);
-                        xml1.onreadystatechange = function(){
-                                if(this.status == 200 && this.readyState == 4){
-                                    try{
-                                        resText2 = JSON.parse(this.responseText);
-                                        getGxp(resText2, alreadyrequested); 
-                                    }catch(e){} 
-                        }
-                        
-                }
-                xml1.send();      
-                }
-                
-            }
-        } */
-            
-                
-                
-                
-                
-               
-   
     let list = ["Avos Temple", "Bloody Beach", "Corkus Castle", "Corkus City", "Corkus City Mine",
 "Corkus City South", "Corkus Countryside", "Corkus Docks", "Corkus Forest North", 
 "Corkus Forest South", "Corkus Mountain", "Corkus Outskirts", "Corkus Sea Cove", "Corkus Sea Port", 
 "Durum Isles Center", "Fallen Factory", "Factory Entrance", "Legendary Island", "Southern Outpost", 
 "Statue", "Corkus Abandoned Tower", "Road To Mine", "Ruined Houses", "Phinas Farm", "Lighthouse Plateau"]
 let allyList = [
-    /**ARTEMIS */
-    //Kingdom Foxes
-    "Kingdom Foxes",
-    "Ombra", 
-    "I Corps",
-    "Panic",
-    "Fluffy Unicorns",
-    "Project Ultimatum",
-    "Lunatic",
-    "Ex Nihilo",
-    "Odysseia",
-    "HaHaUnited",
-    "Ram Ranch",
-   //Imperial
-    "Imperial",
-    "Metric",
-    "Minerva",
-    "Terra Steel",
-    "Kolibri",
-    "House of Sentinels",
-    "EPIcFORTNITEgAY",
-    "Germany FTW",
-    "Squad Zero",
-    "jerf",
-   //Avicia
-    "Avicia",
-    "Invicta",
-    "Time for Pizza",
-    "Stud Squad",
-    "Avocados",
-    "Ivory Tusk",
-    "Afishia",
-   //HackForums
-    "HackForums",
-    "vape god",
-    "Kingdom Furries",
-    "HeckForums",
-    "Bruh Moment",
-   //Paladins United
-    "Paladins United",
-    "Pirates United",
-    "Meow",
-    "Pirates Divided",
-    "Rat Gang",
-    "PaladinForums",
-   //Titans Valor
-    "Titans Valor",
-    "Illustratus",
-    "Seekers of Arx",
-    "dinkle winks",
-    "The Tempest",
-    "IceBabies",
-    "Exorcism",
-   //Emorians
-    "Emorians",
-    "Audux",
-    "Mute Gang",
-    "Toemorians",
-   //Lux Nova
-    "Lux Nova",
-    "Scat Club",
-    "Golden Hour",
-   //Eden
-    "Eden",
-    "Heresy",
-   //Blue Nations United
-    "Blue Nations United",
-    "Hyacinthum",
-    "FortniteKSI",
-    "BlueStoneGroup",
-    "Byzantium",
-    "IceBlue Fantasy",
-    //Empire of Sindria
-    "Empire of Sindria",
-    //Ice Blue Team
-    "IceBlue Team",
-    //The Aquarium
-    "The Aquarium",
-    //*Cooperating */
-    "House of Sentinels",
-    "Seekers of Arx",
-    "The Simple Ones",
-    //**NEUTRAL */
-    "Vindicator",
-    //**OTHER ALLIES **/
-    "Kangronomicon"
+/**ARTEMIS */
+//Kingdom Foxes
+"Kingdom Foxes",
+"Ombra", 
+"I Corps",
+"Panic",
+"Fluffy Unicorns",
+"Project Ultimatum",
+"Lunatic",
+"Ex Nihilo",
+"Odysseia",
+"HaHaUnited",
+"Ram Ranch",
+//Imperial
+"Imperial",
+"Metric",
+"Minerva",
+"Terra Steel",
+"Kolibri",
+"House of Sentinels",
+"EPIcFORTNITEgAY",
+"Germany FTW",
+"Squad Zero",
+"jerf",
+//Avicia
+"Avicia",
+"Invicta",
+"Time for Pizza",
+"Stud Squad",
+"Avocados",
+"Ivory Tusk",
+"Afishia",
+//HackForums
+"HackForums",
+"vape god",
+"Kingdom Furries",
+"HeckForums",
+"Bruh Moment",
+//Paladins United
+"Paladins United",
+"Pirates United",
+"Meow",
+"Pirates Divided",
+"Rat Gang",
+"PaladinForums",
+//Titans Valor
+"Titans Valor",
+"Illustratus",
+"Seekers of Arx",
+"dinkle winks",
+"The Tempest",
+"IceBabies",
+"Exorcism",
+//Emorians
+"Emorians",
+"Audux",
+"Mute Gang",
+"Toemorians",
+//Lux Nova
+"Lux Nova",
+"Scat Club",
+"Golden Hour",
+//Eden
+"Eden",
+"Heresy",
+//Blue Nations United
+"Hyacinthum",
+"FortniteKSI",
+"BlueStoneGroup",
+"Byzantium",
+"IceBlue Fantasy",
+//Empire of Sindria
+"Empire of Sindria",
+//Ice Blue Team
+"IceBlue Team",
+//The Aquarium
+"The Aquarium",
+//*Cooperating */
+"House of Sentinels",
+"Seekers of Arx",
+"The Simple Ones",
+//**NEUTRAL */
+"Vindicator",
+//**OTHER ALLIES **/
+"Kangronomicon"
 ]
 let allyListTags = [
         /**ARTEMIS */
@@ -326,7 +226,6 @@ let allyListTags = [
     "EDN",
     "Rsy",
     //Blue Nations United
-    "BNU",
     "HCM",
     "XDF",
     "GSB",
@@ -348,7 +247,7 @@ let allyListTags = [
     "Fuq"
 ]
 let FoxClaim = [
-   "Cinfras Thanos Transition", 
+"Cinfras Thanos Transition", 
 "Path To Ozoth’s Spire Mid", 
 "Canyon Path South West", 
 "Canyon Mountain East", 
@@ -404,7 +303,7 @@ let ImpClaim = [
 ]
 
 let AvoClaim = [
-    "Light Realm East Mid-Upper",
+"Light Realm East Mid-Upper",
 "Orphion's Seal Upper",
 "Old Coal Mine",
 "Angel Refuge",
@@ -478,10 +377,10 @@ let HaxClaim = [
 "Cinfras’s Small Farm",
 "Gylia Lake North West",
 "Gylia Lake South West",
-"Jitak’s Farm",
+"Jitak’s Farm"
 ]
 let AnoClaim = [
-    "Cliff Side of the Lost",
+"Cliff Side of the Lost",
 "Kandon Farm",
 "Dernal Jungle Upper",
 "Nesaak Plains Mid North West",
@@ -573,7 +472,7 @@ let ErnClaim = [
 "Durum Isles Upper", 
 ]
 let LxaClaim = [
-    "Nivla Forest Exit",
+"Nivla Forest Exit",
 "Pigmen Ravines Entrance",
 "Time Valley",
 "Road to Time Valley",
@@ -606,9 +505,6 @@ let LxaClaim = [
 "Maltic Coast",
 ]
 let EdnClaim = [
-
-
-
 "Nether Plains Lower",
 "Cinfras Entrance",
 "Path to Cinfras",
@@ -626,8 +522,7 @@ let EdnClaim = [
 "Aldorei Valley Upper",
 "Aldorei’s River",
 "Aldorei’s Waterfall",
-"Aldorei Lowlands",
-
+"Aldorei Lowlands"
 ]
 let EsiClaim = [
 "Desert East Lower",
@@ -668,7 +563,7 @@ let EsiClaim = [
 "Ancient Nemract",
 "Mt. Wynn",
 "Nemract Cathedral",
-"Cathedral Harbour",
+"Cathedral Harbour"
 ]
 let IbtClaim = [
 "Path To Prison",
@@ -690,7 +585,6 @@ let IbtClaim = [
 "Zhight Island",
 "Pirate Town",
 "Selchar",
-
 "Abandoned Church",
 "Graveyard North",
 "Dark Forest Cinfras Transition",
@@ -707,28 +601,28 @@ let IbtClaim = [
 "Volcano Lower",
 "Volcano Upper",
 "Lost Atoll",
-"Mesquis Tower",
+"Mesquis Tower"
 ]
 let IlqClaim = [
     "Mage Island"
 ]
 let TAqClaim = [
-    "Green Camp",
-    "Meteor Crater",
-    "Bucie North West",
-    "Bucie North East",
-    "Orc Lake",
-    "Black Camp",
-    "Bucie South West",
-    "Bucie South East",
-    "Orc Road",
-    "Red Camp",
-    "Llevigar Farm",
-    "Pre-Light Forest Transition",
-    "Dead Island South West",
-    "Dead Island South East",
-    "Dead Island North East",
-    "Dead Island North West",
+"Green Camp",
+"Meteor Crater",
+"Bucie North West",
+"Bucie North East",
+"Orc Lake",
+"Black Camp",
+"Bucie South West",
+"Bucie South East",
+"Orc Road",
+"Red Camp",
+"Llevigar Farm",
+"Pre-Light Forest Transition",
+"Dead Island South West",
+"Dead Island South East",
+"Dead Island North East",
+"Dead Island North West"
 ]
 let FFAList = [
 //Gavel
@@ -777,7 +671,7 @@ let xmlhttp = new XMLHttpRequest();
             try{
                 resText = JSON.parse(this.responseText);
             }catch(e){
-                
+                //empty
             }
 
             for(property in resText.territories){
@@ -965,9 +859,11 @@ let xmlhttp = new XMLHttpRequest();
                 sent3 = true
     }
     }
-        }catch(e){}
+        }catch(e){
+            //empty
         }
-        };
+        }
+        }
         if(cmd == "subs"){
             if(args[0].match(/(Fox)/gi)){
                 message.channel.send("Fox has the following subguilds: \n- [Omb] Ombra \n- [FNE] Fluorine \n- [LFX] I Corps \n- [PaN] Panic \n- [FuI] Fluffy Unicorns \n- [PxU] Project Ultimatum \n- [Mox] Lunatic \n- [Nih] Ex Nihilo \n- [Oys] Odysseia \n- [HHU] HaHaUnited \n- [RMR] Ram Ranch")
@@ -1022,82 +918,3 @@ client.on("voiceStateUpdate", () =>{
     }
 }
 });
-
-   
-/* function getGuild(name){
-   guild = name;
-   $.getJSON('https://api.wynncraft.com/public_api.php?action=onlinePlayers', onlinePlayers()).done(function() {
-		console.log('online players request succeeded!');
-    });
-
-}
-playerList = [];
-function onlinePlayers(data){
-    console.log("Start collection");
-	if (!data.message) {
-		$.each(data, function(wc, list){
-			$.each(list, function(num, player){
-				playerList[player] = wc;
-			});
-		});
-	} else {
-		console.log("Error loading online players!");
-		console.log("API message: "+data.message);
-	}
-	playerListComplete = true;
-    console.log("Collection complete");
-    $.getJSON('https://api.wynncraft.com/public_api.php?action=guildStats&command=' + guild, loadStats()).done(function() {
-		console.log('guild stats request succeeded!');
-    
-})};
-function loadStats(guild){
-    var onlinePlayersCount = 0;
-    ranks = {
-        OWNER : [],
-        CHIEF: [],
-        CAPTAIN: [],
-        RECRUITER: [],
-        RECRUIT: []
-    };
-    onlineranks = {
-        OWNER : [],
-        CHIEF: [],
-        CAPTAIN: [],
-        RECRUITER: [],
-        RECRUIT: []
-    };
-    $.each(guild.members, function(num, member){
-        console.log(onlinePlayersCount)
-        rank = member.rank;
-        join_ts = new Date(member.joined).getTime();
-		join_ts--;
-		do {
-			join_ts++;
-		}while(rank in ranks[rank]);
-        ranks[rank][join_ts] = member;
-    });
-    var onlinePlayersString = [];
-    $.each(guild.members, function(rank, member){
-        if (member.name in playerList){
-            rank = member.rank;
-            wc = playerList[member.name];
-            onlinePlayersCount++;
-            join_ts = new Date(member.joined).getTime();
-		    join_ts--;
-		    do {
-			join_ts++;
-		}while(rank in onlineranks[rank]);
-            onlineranks[rank][join_ts] = member;
-            if(onlinePlayersCount > 0){
-                onlinePlayersString.push(
-                    "*",
-                    member.name,
-                    "[" + member.rank + "]",
-                    "is on" + " " + wc,
-                    "\n"
-                    )
-            }
-        }
-});
-        return onlinePlayersString;
-}; */
