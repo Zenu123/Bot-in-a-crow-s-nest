@@ -62,7 +62,7 @@ client.on("message", async message => {
 
     switch(cmd){
         case "ping":
-            client.commands.get('ping').execute(message, args, client.ping);
+            client.commands.get('ping').execute(message, args, client.ws.ping);
             break;
         case "help":
             client.commands.get('help').execute(message, args);
@@ -85,6 +85,21 @@ client.on("message", async message => {
         case "vote":
             client.commands.get('vote').execute(message, args);
             break;
+        case "guildstats":
+            client.commands.get('guildstats').execute(message, args);
+            break;
+        case "userstats":
+            client.commands.get('userstats').execute(message, args);
+            break;
+        case "counts":
+            client.commands.get('counts').execute(message, args);
+            break;
+        case "sincelastcounts":
+            client.commands.get('sincelastcounts').execute(message, args);
+            break;
+        case "sl":
+            client.commands.get('sl').execute(message, args);
+            break;
         default:
             unknownCommandEmbed = new Discord.MessageEmbed()
             .setColor("#ff0000")
@@ -104,7 +119,6 @@ client.on("message", async message => {
             xp = Number(str.slice(str.search(/(- )/) + 2, str.search(/( XP)/)))
             ems = Number(str.slice(str.search(/(XP - )/) + 5, str.search(/(Emeralds)/) - 1))
             joined = str.slice(str.search(/(Joined)/) + 7, str.search(/(\n)/) - 1)
-
             gList.push([name, xp, ems, joined])
             str = str.replace(str.slice(str.search(/#/), str.search(/(\n)/) + 1), "")
         }
@@ -142,7 +156,6 @@ client.on("message", async message => {
                         inputStats = this.responseText
                         inputStats = inputStats.replace(inputStats.slice(0, 58), "")
                         inputStats = inputStats.replace(/� -/g, " Emeralds");
-
                         while (inputStats.search(/CHAT/) != -1) {
                             if(inputStats.search(/CHAT/) != -1){
                                 inputStats = inputStats.replace(inputStats.slice(inputStats.search(/:/) - 3, inputStats.search(/CHAT/) + 6), "\n")
@@ -203,7 +216,6 @@ client.on("message", async message => {
                 }
             }
             xmlStats.send();
-
            
         }else{
             message.channel.send(errorResponse("noperms", "MANAGE_GUILD"))
@@ -353,7 +365,6 @@ client.on("message", async message => {
                                 } 
                                 }
                                     
-
                                 }catch(e){
                                     //empty
                                 }
@@ -383,7 +394,6 @@ client.on("message", async message => {
                         inputStats = this.responseText
                         inputStats = inputStats.replace(inputStats.slice(0, 58), "")
                         inputStats = inputStats.replace(/� -/g, " Emeralds");
-
                         while (inputStats.search(/CHAT/) != -1) {
                             if(inputStats.search(/CHAT/) != -1){
                                 inputStats = inputStats.replace(inputStats.slice(inputStats.search(/:/) - 3, inputStats.search(/CHAT/) + 6), "\n")
@@ -447,7 +457,6 @@ client.on("message", async message => {
                 }
             }
             xmlSetLast.send();
-
            
         }else{
             message.channel.send(errorResponse("noperms", "MANAGE_GUILD"))
@@ -583,7 +592,6 @@ client.on("message", async message => {
                 
             }
             xmlhttp1.send();
-
     }
     
     if(cmd == "say"){
